@@ -1,15 +1,22 @@
+var circles = [];
+
 function onKeyDown(event) {
   //maxPoint will get the size of the window in its actual state
   var maxPoint = new Point(view.size.width, view.size.height);
   //Returns a point object with random x and y values between 0 and 1.
   var randomPoint = Point.random();
   var randomCordinate = maxPoint * randomPoint;
-	// When a key is pressed,A point between {x:0, y:0} and {x:100, y:100} is returned
-  // A circle is made each t
-	new Path.Circle(randomCordinate, 50).fillColor = 'purple';
+  var newCircle = new Path.Circle(randomCordinate, 500);
+  newCircle.fillColor = 'purple';
+	circles.push(newCircle);
 }
 
-
+function onFrame(event) {
+  for (var i = 0; i < circles.length; i++) {
+    circles[i].fillColor.hue += 1;
+    circles[i].scale(.9);
+  }
+}
 
 
 
